@@ -1,6 +1,6 @@
 import time
-from fastapi import FastAPI, Request
-from prometheus_client import Gauge, Histogram, make_asgi_app
+from fastapi import FastAPI, Response
+from prometheus_client import Gauge, Histogram, generate_latest, CONTENT_TYPE_LATEST
 from src.chains.rag_logic import RAGOrchestrator
 from src.utils.cache import init_semantic_cache
 from pydantic import BaseModel
@@ -20,9 +20,14 @@ orchestrator = RAGOrchestrator()
 def startup_event():
     init_semantic_cache()
 
+@app.get("/metrics")
+def get_metrics():
+    """Exposes metrics for Kyma Telemetry/Prometheus scraping."""
+    return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
+
 @app.post("/query")
 async def handle_query(request: QueryRequest):
-    IN_PROGRESS.inc()
+    IN_PROGRESS.inc() 
     start_time = time.time()
     
     try:
@@ -32,7 +37,5 @@ async def handle_query(request: QueryRequest):
         return {"answer": response, "latency": f"{duration:.2f}s"}
         
     finally:
+        
         IN_PROGRESS.dec()
-
-metrics_app = make_asgi_app()
-app.mount("/metrics", metrics_app)

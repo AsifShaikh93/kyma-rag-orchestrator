@@ -13,5 +13,5 @@ spec:
       metadata:
         serverAddress: http://telemetry-self-monitor.kyma-system:9090
         metricName: rag_active_requests
-        threshold: '3' 
+        threshold: '1' 
         query: sum(rag_active_requests)
