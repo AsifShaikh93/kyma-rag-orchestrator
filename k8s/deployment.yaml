@@ -60,10 +60,3 @@ spec:
             secretKeyRef:
               name: all-secrets-here
               key: REDIS_PASSWORD
-        resources:
-          requests:
-            cpu: "200m"
-            memory: "256Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
