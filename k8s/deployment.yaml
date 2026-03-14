@@ -25,6 +25,12 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
         env:
         - name: GROQ_API_KEY
           valueFrom:
@@ -61,10 +67,4 @@ spec:
             secretKeyRef:
               name: all-secrets-here
               key: REDIS_PASSWORD
-        resources:
-          requests:
-            cpu: "250m"
-            memory: "256Mi"
-          limits:
-            cpu: "1"
-            memory: "512Mi"      
+           
