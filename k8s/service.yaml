@@ -3,6 +3,10 @@ kind: Service
 metadata:
   name: rag-orchestrator 
   namespace: ai-agent-ns
+  annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
 spec:
   selector:
     app: rag-ai 

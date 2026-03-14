@@ -6,6 +6,9 @@ spec:
   input:
     prometheus:
       enabled: true
+      namespaces:
+        include:
+          - ai-agent-ns
   output:
     otlp:
       endpoint:

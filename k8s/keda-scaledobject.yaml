@@ -12,6 +12,6 @@ spec:
     - type: prometheus
       metadata:
         serverAddress: http://telemetry-self-monitor.kyma-system:9090
-        metricName: rag_active_requests
+        metricName: rag_active_requests_total
         threshold: '1' 
-        query: sum(rag_active_requests)
+        query: sum(rag_active_requests_total{namespace="ai-agent-ns"})
