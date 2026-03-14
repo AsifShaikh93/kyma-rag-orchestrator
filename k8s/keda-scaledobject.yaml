@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: rag-orchestrator-scaler
+  namespace: ai-agent-ns
+spec:
+  scaleTargetRef:
+    name: rag-orchestrator
+  minReplicaCount: 1
+  maxReplicaCount: 5
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://telemetry-otlp-metrics.kyma-system:8080 
+        metricName: rag_active_requests
+        threshold: '3' 
+        query: sum(rag_active_requests)

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+prometheus_client
+langchain
+langchain-openai
+langchain-redis
+qdrant-client
+pydantic-settings
+python-dotenv

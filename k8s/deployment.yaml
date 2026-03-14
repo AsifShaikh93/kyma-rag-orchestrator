@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-orchestrator
+  namespace: ai-agent-ns
+  labels:
+    app: rag-ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-ai
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+      labels:
+        app: rag-ai
+    spec:
+      containers:
+      - name: rag-container
+        image: asif1993/kyma-rag-orchestrator:v1
+        ports:
+        - containerPort: 8000
+        env:
+        - name: GROQ_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: all-secrets-here
+              key: GROQ_API_KEY
+        - name: QDRANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: all-secrets-here
+              key: QDRANT_URL
+        - name: QDRANT_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: all-secrets-here
+              key: QDRANT_API_KEY
+        - name: REDIS_HOST
+          valueFrom:
+            secretKeyRef:
+              name: all-secrets-here
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            secretKeyRef:
+              name: all-secrets-here
+              key: REDIS_PORT
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: all-secrets-here
+              key: REDIS_PASSWORD
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"

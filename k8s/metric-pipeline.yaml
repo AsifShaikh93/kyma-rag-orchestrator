@@ -1,0 +1,12 @@
+apiVersion: telemetry.kyma-project.io/v1alpha1
+kind: MetricPipeline
+metadata:
+  name: rag-metrics-pipeline
+spec:
+  input:
+    prometheus:
+      enabled: true
+  output:
+    otlp:
+      endpoint:
+        value: "http://telemetry-otlp-metrics.kyma-system:4317"
