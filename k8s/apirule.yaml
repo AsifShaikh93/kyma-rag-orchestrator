@@ -8,7 +8,7 @@ spec:
     - rag-orchestrator.c-321a6c0.stage.kyma.ondemand.com
   service:
     name: rag-orchestrator
-    port: 8000
+    port: 80
   gateway: kyma-system/kyma-gateway
   rules:
     - path: /query

@@ -1,0 +1,11 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: rag-orchestrator-mtls
+  namespace: ai-agent-ns
+spec:
+  selector:
+    matchLabels:
+      app: rag-ai
+  mtls:
+    mode: PERMISSIVE

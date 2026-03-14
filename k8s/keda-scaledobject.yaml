@@ -11,7 +11,7 @@ spec:
   triggers:
     - type: prometheus
       metadata:
-        serverAddress: http://telemetry-otlp-metrics.kyma-system:8080 
+        serverAddress: http://telemetry-self-monitor.kyma-system:9090
         metricName: rag_active_requests
         threshold: '3' 
         query: sum(rag_active_requests)

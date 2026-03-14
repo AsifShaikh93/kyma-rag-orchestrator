@@ -3,6 +3,11 @@ from fastapi import FastAPI, Request
 from prometheus_client import Counter, Histogram, make_asgi_app
 from src.chains.rag_logic import RAGOrchestrator
 from src.utils.cache import init_semantic_cache
+from pydantic import BaseModel
+
+class QueryRequest(BaseModel):
+    user_input: str
+    session_id: str
 
 app = FastAPI(title="Auto-Scaling RAG Orchestrator")
 
@@ -16,12 +21,12 @@ def startup_event():
     init_semantic_cache()
 
 @app.post("/query")
-async def handle_query(user_input: str, session_id: str):
+async def handle_query(request: QueryRequest):
     IN_PROGRESS.inc()
     start_time = time.time()
     
     try:
-        response = await orchestrator.run(user_input, session_id)
+        response = await orchestrator.run(request.user_input, request.session_id)
         duration = time.time() - start_time
         LATENCY.observe(duration)
         return {"answer": response, "latency": f"{duration:.2f}s"}
