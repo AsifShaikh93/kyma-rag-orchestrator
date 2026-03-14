@@ -1,8 +1,8 @@
 import time
 from fastapi import FastAPI, Request
 from prometheus_client import Counter, Histogram, make_asgi_app
-from chains.rag_logic import RAGOrchestrator
-from utils.cache import init_semantic_cache
+from src.chains.rag_logic import RAGOrchestrator
+from src.utils.cache import init_semantic_cache
 
 app = FastAPI(title="Auto-Scaling RAG Orchestrator")
 

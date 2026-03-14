@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_community.vectorstores import Qdrant
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 import os
 
 class RAGOrchestrator:

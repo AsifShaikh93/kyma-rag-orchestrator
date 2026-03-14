@@ -4,6 +4,7 @@ prometheus_client
 langchain
 langchain-openai
 langchain-redis
+langchain_community
 qdrant-client
 pydantic-settings
 python-dotenv
