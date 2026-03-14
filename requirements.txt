@@ -1,3 +1,5 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 fastapi
 uvicorn
 prometheus_client
@@ -10,4 +12,6 @@ pydantic-settings
 python-dotenv
 langchain_huggingface
 langchain_groq
+numpy<2
+torch>=2.4.0+cpu       
 sentence-transformers
