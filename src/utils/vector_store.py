@@ -3,6 +3,8 @@ from langchain_community.vectorstores import Qdrant
 from langchain_openai import OpenAIEmbeddings
 import os
 
+os.environ['OPENAI_API_KEY']=os.getenv('OPENAI_API_KEY')
+
 class QdrantProvider:
     _instance = None
 

@@ -3,6 +3,8 @@ from langchain_community.vectorstores import Qdrant
 from langchain_classic.chains import RetrievalQA
 import os
 
+os.environ['OPENAI_API_KEY']=os.getenv('OPENAI_API_KEY')
+
 class RAGOrchestrator:
     def __init__(self):
         self.llm = ChatOpenAI(

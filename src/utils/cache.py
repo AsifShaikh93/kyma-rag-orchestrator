@@ -3,6 +3,8 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_core.globals import set_llm_cache
 import os
 
+os.environ['OPENAI_API_KEY']=os.getenv('OPENAI_API_KEY')
+
 def init_semantic_cache():
     """
     Initializes a semantic cache using Redis Cloud. 
