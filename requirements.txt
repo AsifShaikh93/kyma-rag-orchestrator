@@ -10,3 +10,4 @@ pydantic-settings
 python-dotenv
 langchain_huggingface
 langchain_groq
+sentence-transformers
