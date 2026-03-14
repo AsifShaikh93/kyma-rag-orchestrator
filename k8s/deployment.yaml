@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: rag-container
-        image: asif1993/kyma-rag-orchestrator:v5
+        image: asif1993/kyma-rag-orchestrator:v6
         ports:
         - containerPort: 8000
         env:
@@ -30,11 +30,11 @@ spec:
             secretKeyRef:
               name: all-secrets-here
               key: GROQ_API_KEY
-        - name: OPENAI_API_KEY
+        - name: HF_TOKEN
           valueFrom:
             secretKeyRef:
               name: all-secrets-here
-              key: OPENAI_API_KEY      
+              key: HF_TOKEN      
         - name: QDRANT_URL
           valueFrom:
             secretKeyRef:

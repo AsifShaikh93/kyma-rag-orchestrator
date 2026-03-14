@@ -1,9 +1,9 @@
 from langchain_redis import RedisSemanticCache
-from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.globals import set_llm_cache
 import os
 
-os.environ['OPENAI_API_KEY']=os.getenv('OPENAI_API_KEY')
+os.environ['HF_TOKEN']=os.getenv('HF_TOKEN')
 
 def init_semantic_cache():
     """
@@ -17,7 +17,7 @@ def init_semantic_cache():
     
     redis_url = f"redis://:{password}@{host}:{port}"
 
-    embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+    embeddings=HuggingFaceEmbeddings()
     semantic_cache = RedisSemanticCache(
         redis_url=redis_url,
         embeddings=embeddings,

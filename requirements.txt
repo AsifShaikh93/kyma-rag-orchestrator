@@ -8,3 +8,5 @@ langchain_community
 qdrant-client
 pydantic-settings
 python-dotenv
+langchain_huggingface
+langchain_groq

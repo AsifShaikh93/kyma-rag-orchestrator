@@ -1,9 +1,9 @@
 from qdrant_client import QdrantClient
 from langchain_community.vectorstores import Qdrant
-from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 import os
 
-os.environ['OPENAI_API_KEY']=os.getenv('OPENAI_API_KEY')
+os.environ['HF_TOKEN']=os.getenv('HF_TOKEN')
 
 class QdrantProvider:
     _instance = None
@@ -14,7 +14,7 @@ class QdrantProvider:
                 url=os.getenv("QDRANT_URL"),
                 api_key=os.getenv("QDRANT_API_KEY"),
             )
-            embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+            embeddings=HuggingFaceEmbeddings()
             
             cls._instance = Qdrant(
                 client=client, 
