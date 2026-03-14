@@ -15,6 +15,7 @@ spec:
       methods:
         - POST
       noAuth: true
+      timeout: 1000
     - path: /metrics
       methods:
         - GET
