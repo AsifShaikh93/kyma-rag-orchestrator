@@ -1,6 +1,6 @@
 import time
 from fastapi import FastAPI, Request
-from prometheus_client import Counter, Histogram, make_asgi_app
+from prometheus_client import Gauge, Histogram, make_asgi_app
 from src.chains.rag_logic import RAGOrchestrator
 from src.utils.cache import init_semantic_cache
 from pydantic import BaseModel
@@ -11,7 +11,7 @@ class QueryRequest(BaseModel):
 
 app = FastAPI(title="Auto-Scaling RAG Orchestrator")
 
-IN_PROGRESS = Counter("rag_active_requests_total", "Total requests currently being handled")
+IN_PROGRESS = Gauge("rag_active_requests_total", "Total requests currently being handled")
 LATENCY = Histogram("rag_llm_latency_seconds", "Time spent waiting for LLM response")
 
 orchestrator = RAGOrchestrator()
