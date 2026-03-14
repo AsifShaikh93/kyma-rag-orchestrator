@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: rag-container
-        image: asif1993/kyma-rag-orchestrator:v4
+        image: asif1993/kyma-rag-orchestrator:v5
         ports:
         - containerPort: 8000
         env:
